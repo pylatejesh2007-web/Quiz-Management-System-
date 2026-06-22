@@ -1,0 +1,94 @@
+questions = []
+
+def add_question():
+
+    question = input("Enter Question: ")
+
+    option_a = input("Enter Option A: ")
+    option_b = input("Enter Option B: ")
+    option_c = input("Enter Option C: ")
+    option_d = input("Enter Option D: ")
+
+    answer = input("Enter Correct Option (A/B/C/D): ").upper()
+
+    q = {
+        "question": question,
+        "A": option_a,
+        "B": option_b,
+        "C": option_c,
+        "D": option_d,
+        "answer": answer
+    }
+
+    questions.append(q)
+
+    print("Question Added Successfully!")
+
+def start_quiz():
+
+    if len(questions) == 0:
+        print("No Questions Available!")
+        return
+
+    score = 0
+
+    for q in questions:
+
+        print("\nQuestion:", q["question"])
+        print("A.", q["A"])
+        print("B.", q["B"])
+        print("C.", q["C"])
+        print("D.", q["D"])
+
+        user_answer = input("Enter Your Answer: ").upper()
+
+        if user_answer == q["answer"]:
+            score += 1
+
+    print("\nQuiz Completed")
+    print("Your Score:", score, "/", len(questions))
+
+def show_answers():
+
+    if len(questions) == 0:
+        print("No Questions Available!")
+        return
+
+    for q in questions:
+
+        print("\nQuestion:", q["question"])
+        print("Correct Answer:", q["answer"])
+
+def result_summary():
+
+    print("\nTotal Questions:", len(questions))
+
+while True:
+
+    print("\n===== ONLINE QUIZ MANAGEMENT SYSTEM =====")
+    print("1. Add Question")
+    print("2. Start Quiz")
+    print("3. Show Correct Answers")
+    print("4. Result Summary")
+    print("5. Exit")
+
+    choice = input("Enter Choice: ")
+
+    if choice == "1":
+        add_question()
+
+    elif choice == "2":
+        start_quiz()
+
+    elif choice == "3":
+        show_answers()
+
+    elif choice == "4":
+        result_summary()
+
+    elif choice == "5":
+        print("Thank You!")
+        break
+
+    else:
+        print("Invalid Choice!")
